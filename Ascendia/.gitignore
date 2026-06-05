@@ -1,0 +1,10 @@
+# Dépendances (lourd et inutile à push)
+node_modules/
+
+# Variables d'environnement (Sécurité ❌ NE JAMAIS PUSH)
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
