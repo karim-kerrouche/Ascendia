@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ascendia — Ma Roadmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=Oxanium:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/roadmap.css" />
+  </head>
+  <body>
+    <!-- Loading screen -->
+    <div class="page-loading" id="page-loading">
+      <div class="spinner-lg"></div>
+      <p>Chargement de ta roadmap…</p>
+      <small>PROPULSÉ PAR GEMINI AI</small>
+    </div>
+
+    <!-- Modal QCM -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-label">⚔ TEST DE VALIDATION</div>
+        <div class="modal-question" id="modal-question">Question…</div>
+        <div class="modal-options" id="modal-options"></div>
+        <div class="modal-feedback" id="modal-feedback"></div>
+        <button
+          class="modal-validate"
+          id="modal-validate"
+          onclick="submitAnswer()"
+        >
+          Valider ma réponse
+        </button>
+        <button
+          class="modal-continue show"
+          id="modal-continue"
+          style="display: none"
+          onclick="closeModalAndProgress()"
+        >
+          ✓ Continuer ma progression →
+        </button>
+      </div>
+    </div>
+
+    <div class="page">
+      <canvas id="cv"></canvas>
+
+      <div class="nav">
+        <div class="nav-in">
+          <a class="logo" href="/">
+            <img src="images/ascendiaLogo.png" class="lm" alt="Ascendia" />
+            <span class="lt">Ascendia</span>
+          </a>
+          <div class="nav-r">
+            <a href="/" class="nav-back">← Retour</a>
+            <button class="nav-save" onclick="saveRoadmap()">
+              Sauvegarder
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header — rempli dynamiquement -->
+      <div class="mhead">
+        <div class="mh-left">
+          <div class="chip">
+            <span class="chip-dot"></span
+            ><span id="chip-text">MISSION · IA GÉNÉRATIVE</span>
+          </div>
+          <div class="mname" id="mname">Chargement…</div>
+          <div class="mmeta" id="mmeta"></div>
+        </div>
+        <div class="mh-right"></div>
+      </div>
+
+      <!-- Horizontal Map — rempli dynamiquement -->
+      <div class="hmap-wrap">
+        <div class="hmap">
+          <div class="hline"></div>
+          <div class="nodes-row" id="nodes-row"></div>
+        </div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="detail-wrap">
+        <div id="detail-container">
+          <div class="panel-placeholder">
+            <div class="pp-icon">🪐</div>
+            <div class="pp-text">
+              Clique sur une planète pour explorer son contenu
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="javaScript/roadmap.js"></script>
+  </body>
+</html>

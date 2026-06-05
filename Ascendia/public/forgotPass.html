@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mot de passe oublié - Ascendia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/forgotPass.css" />
+  </head>
+  <body class="dark">
+    <div class="presentation">
+      <div class="logo">
+        <div class="logo-icon">📈</div>
+        <span>Ascendia</span>
+      </div>
+      <div class="carte">
+        <h1>Reset your<br />password.</h1>
+        <p>
+          Enter your email and we'll send you a link to reset your password.
+        </p>
+      </div>
+      <p class="copyright">© 2026 Ascendia</p>
+    </div>
+
+    <div class="inscription">
+      <div class="carte">
+        <form>
+          <h2>Forgot password?</h2>
+          <p>No worries, we'll send you reset instructions.</p>
+          <input
+            placeholder="Email address"
+            type="email"
+            id="email"
+            required
+          /><br />
+          <p id="erreur" style="display: none">
+            ❌ Aucun compte trouvé avec cet email.
+          </p>
+          <p id="succes" style="display: none">
+            Email envoyé ! Vérifie ta boîte mail.
+          </p>
+          <button class="button" type="button" onclick="reinitialiser()">
+            Send reset email
+          </button>
+          <p><a href="login.html">← Back to login</a></p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="javaScript/forgotPass.js"></script>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ascendia — Forge ton chemin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/global.css" />
+    <link rel="stylesheet" href="style/index.css" />
+  </head>
+  <body>
+    <!-- ══ NAVBAR ══ -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/ascendiaLogo.png" class="logo-mark" alt="Ascendia" />
+          <span class="logo-text">Ascendia</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active" data-page="index"
+            >Explorer</a
+          >
+          <a href="mes-roadmaps.html" class="nav-link" data-page="mes-roadmaps"
+            >Mes roadmaps</a
+          >
+        </div>
+
+        <div class="nav-right" id="nav-right">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ══ HERO ══ -->
+      <section class="hero">
+        <div class="hero-bg">
+          <!-- Interactive canvas background -->
+          <canvas id="hero-canvas"></canvas>
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+          <div class="orb orb-3"></div>
+          <div class="grid-overlay"></div>
+          <!-- Floating particles -->
+          <div class="particles" id="particles"></div>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-chip">
+            <span class="chip-dot"></span>
+            Propulsé par l'IA · Roadmaps illimitées
+          </div>
+
+          <h1 class="hero-title">
+            Forge ton chemin vers
+            <span class="title-gradient">n'importe quel objectif</span>
+          </h1>
+
+          <p class="hero-sub">
+            Entre un objectif — métier, sport, langue, compétence — et obtiens
+            une roadmap personnalisée avec étapes, sous-étapes, ressources et
+            tests de validation.
+          </p>
+
+          <div class="search-wrap">
+            <input
+              type="text"
+              id="goal-input"
+              class="search-input"
+              placeholder="Ex: Développeur web, apprendre le piano…"
+            />
+            <button class="search-btn" id="btn-gen" onclick="generateRoadmap()">
+              Générer ma roadmap <span class="btn-arrow">→</span>
+            </button>
+          </div>
+
+          <div class="error-box" id="error-box"></div>
+
+          <div class="loading-wrap" id="loading">
+            <div class="spinner"></div>
+            <p class="loading-text">L'IA construit ton parcours…</p>
+            <span class="loading-step" id="loading-msg"
+              >Analyse de l'objectif</span
+            >
+          </div>
+
+          <!-- Suggestion chips -->
+          <div class="suggestion-chips" id="suggestion-chips">
+            <span class="sug-label">Tendances :</span>
+            <button
+              class="sug-chip"
+              onclick="fillGoal('Développeur web full-stack')"
+            >
+              Développeur web
+            </button>
+            <button class="sug-chip" onclick="fillGoal('Espagnole')">
+              Espagnole
+            </button>
+            <button class="sug-chip" onclick="fillGoal('Data scientist')">
+              Data scientist
+            </button>
+            <button class="sug-chip" onclick="fillGoal('Designer UI/UX')">
+              UI/UX Design
+            </button>
+            <button class="sug-chip" onclick="fillGoal('AI developer')">
+              AI developer
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ STATS ══ -->
+      <section class="stats-section">
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Objectifs possibles</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">⌬</div>
+          <div class="stat-label">Génération rapide</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Gratuit</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">☈</div>
+          <div class="stat-label">Progression visuelle</div>
+        </div>
+      </section>
+
+      <!-- ══ COMMENT ÇA MARCHE ══ -->
+      <section class="how-section">
+        <h2
+          class="section-title"
+          style="text-align: center; margin-bottom: 48px"
+        >
+          Comment ça marche
+        </h2>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-num">01</div>
+            <div class="how-icon">◈</div>
+            <h3>Définis ton objectif</h3>
+            <p>
+              Tape n'importe quel objectif — métier, compétence, sport, langue.
+              L'IA comprend tout.
+            </p>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-step">
+            <div class="how-num">02</div>
+            <div class="how-icon">⊶</div>
+            <h3>L'IA génère ta roadmap</h3>
+            <p>
+              En 3 secondes, tu obtiens des étapes, sous-étapes et ressources
+              personnalisées.
+            </p>
+          </div>
+          <div class="how-arrow">→</div>
+          <div class="how-step">
+            <div class="how-num">03</div>
+            <div class="how-icon">⟿</div>
+            <h3>Progresse étape par étape</h3>
+            <p>
+              Valide chaque sous-étape avec un mini-test et suis ta progression
+              sur la barre.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div
+          class="nav-logo"
+          style="justify-content: center; margin-bottom: 12px"
+        >
+          <img src="images/ascendiaLogo.png" class="logo-mark" alt="Ascendia" />
+          <span class="logo-text">Ascendia</span>
+        </div>
+        <p class="footer-sub">Forge ton chemin vers n'importe quel objectif.</p>
+        <p class="footer-copy">© 2026 Ascendia · Projet universitaire UMMTO</p>
+      </div>
+    </footer>
+
+    <script src="javaScript/index.js"></script>
+  </body>
+</html>

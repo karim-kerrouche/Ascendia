@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ascendia — Profil</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/profile.css" />
+  </head>
+  <body>
+    <!-- ÉCRAN CONNEXION REQUISE (affiché si non connecté) -->
+    <div id="locked-screen">
+      <div class="lock-icon">Oops...</div>
+      <div class="lock-title">Connexion requise</div>
+      <div class="lock-sub">
+        Connecte-toi pour accéder à ton profil et retrouver tes roadmaps
+        sauvegardées.
+      </div>
+      <a href="login.html" class="lock-btn">Se connecter</a>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- MODAL MODIFICATION DU PROFIL -->
+    <div class="modal-overlay" id="editModal">
+      <div class="modal">
+        <button class="modal-close" id="editModalClose">✕</button>
+        <div class="modal-title">Modifier le profil</div>
+        <div
+          class="field-group"
+          style="text-align: center; margin-bottom: 18px"
+        >
+          <label style="display: block; margin-bottom: 8px"
+            >PHOTO DE PROFIL</label
+          >
+          <div
+            id="modalAvatarPreview"
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 16px;
+              background: linear-gradient(135deg, var(--purple), var(--pink));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: var(--font-heading);
+              font-size: 20px;
+              font-weight: 700;
+              color: #fff;
+              margin: 0 auto 10px;
+              overflow: hidden;
+              cursor: pointer;
+              border: 2px solid rgba(139, 92, 246, 0.3);
+            "
+            onclick="document.getElementById('modalAvatarInput').click()"
+          >
+            ?
+          </div>
+          <input
+            type="file"
+            id="modalAvatarInput"
+            accept="image/*"
+            style="display: none"
+          />
+          <span style="font-size: 10px; color: var(--text-faint)"
+            >Cliquer pour changer</span
+          >
+        </div>
+        <div class="field-group">
+          <label>NOM COMPLET</label>
+          <input type="text" id="editName" placeholder="Votre nom" />
+        </div>
+        <div class="field-group">
+          <label>E-MAIL</label>
+          <input
+            type="email"
+            id="editEmail"
+            placeholder="email@exemple.com"
+            readonly
+            style="opacity: 0.5; cursor: not-allowed"
+          />
+        </div>
+        <div class="field-group">
+          <label>LOCALISATION</label>
+          <input type="text" id="editLocation" placeholder="Ville, Pays" />
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" id="editModalCancel">Annuler</button>
+          <button class="btn-save" id="editModalSave">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+      <div class="nav-inner">
+        <a href="index.html" class="logo">
+          <img src="images/ascendiaLogo.png" class="logo-icon" alt="Ascendia" />
+          <span class="logo-text">Ascendia</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Accueil</a>
+          <a href="#" class="active">Profil</a>
+          <button class="btn-logout" id="logoutBtn">Déconnexion</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- BANNIÈRE PROFIL -->
+    <div class="hero">
+      <div class="hero-blob-1"></div>
+      <div class="hero-blob-2"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-diagonal"></div>
+      <div class="hero-content">
+        <div
+          class="avatar"
+          id="avatarInitials"
+          title="Changer la photo de profil"
+          onclick="document.getElementById('avatarFileInput').click()"
+        >
+          —
+          <div class="avatar-overlay">📷</div>
+        </div>
+        <input
+          type="file"
+          id="avatarFileInput"
+          accept="image/*"
+          style="display: none"
+        />
+        <div class="hero-info">
+          <div class="hero-name" id="userFullName">Chargement…</div>
+          <div class="hero-meta">
+            <span id="userEmail">—</span>
+            <div class="dot"></div>
+            <span id="userLocation">—</span>
+            <div class="dot"></div>
+            <span id="userMemberSince">—</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-edit" id="editProfileBtn">✏ Modifier</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="main">
+      <div class="col-left">
+        <!-- Statistiques -->
+        <div class="stats-strip">
+          <div class="stat-item">
+            <div class="stat-number" id="statRoadmapsCount">0</div>
+            <div class="stat-label">Roadmaps</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statStepsCompleted">0</div>
+            <div class="stat-label">Étapes faites</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statFriendsCount">0</div>
+            <div class="stat-label">Amis</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statCompletedRoadmaps">0</div>
+            <div class="stat-label">Terminées</div>
+          </div>
+        </div>
+
+        <!-- Roadmaps -->
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title">Roadmaps sauvegardées</span>
+            <span class="section-badge" id="activeRoadmapsCount">0 active</span>
+          </div>
+          <div class="roadmap-list" id="roadmapsList"></div>
+        </div>
+
+        <!-- Journal d'activité -->
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title">Activité récente</span>
+          </div>
+          <div class="activity-list" id="activitiesList"></div>
+        </div>
+      </div>
+
+      <div class="col-right">
+        <!-- Section Amis -->
+        <div class="r-card friends-card">
+          <div class="card-title">
+            Amis <span id="friendsCountBadge">0 ami(s)</span>
+          </div>
+          <div class="add-friend-row">
+            <input
+              type="text"
+              id="friendInput"
+              class="friend-input"
+              placeholder="Nom ou email d'un ami…"
+            />
+            <button class="btn-add-friend" id="addFriendBtn">+ Ajouter</button>
+          </div>
+          <div class="friends-list" id="friendsList">
+            <div class="empty-state" style="padding: 14px 0">
+              Aucun ami ajouté pour l'instant.
+            </div>
+          </div>
+        </div>
+
+        <!-- Informations du compte -->
+        <div class="r-card">
+          <div class="card-title">Informations du compte</div>
+          <div class="info-table">
+            <div class="info-row">
+              <span class="info-label">Nom</span>
+              <span class="info-value" id="infoName">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">E-mail</span>
+              <span class="info-value" id="infoEmail">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Localisation</span>
+              <span class="info-value" id="infoLocation">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Membre depuis</span>
+              <span class="info-value" id="infoMemberSince">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Méthode de connexion</span>
+              <span class="info-value" id="infoMethod">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANNEAU BASE DE DONNÉES -->
+    <div class="db-panel">
+      <button class="db-toggle" id="dbToggle" title="Outils base de données">
+        🗄
+      </button>
+      <div class="db-popup" id="dbPopup">
+        <strong>🗄 Base de données locale</strong>
+        <div id="dbStatus" style="margin-bottom: 8px; line-height: 1.6">
+          Chargement…
+        </div>
+        <button class="db-btn" id="dbExport">⬇ Exporter en JSON</button>
+        <button class="db-btn danger" id="dbReset">
+          🗑 Réinitialiser les roadmaps
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="javaScript/profile.js"></script>
+  </body>
+</html>

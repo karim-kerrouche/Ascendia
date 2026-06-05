@@ -1,0 +1,270 @@
+.page-wrap {
+  padding: 100px 24px 60px;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.page-header {
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards 0.1s;
+}
+
+.page-header h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  border: 0.5px dashed rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-lg);
+  background: rgba(139, 92, 246, 0.03);
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards 0.25s;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  filter: grayscale(0.3);
+}
+
+.empty-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.empty-sub {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 28px;
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.btn-create {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn-create:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+/* Roadmap grid */
+.rm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards 0.2s;
+}
+
+.rm-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.rm-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rm-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(139, 92, 246, 0.12);
+}
+
+.rm-card:hover::before {
+  opacity: 1;
+}
+
+.rm-card-goal {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.rm-card-date {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.rm-progress-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.rm-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.rm-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rm-steps {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.rm-pct {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--purple-l);
+}
+
+.rm-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 0.5px solid var(--border);
+}
+
+.rm-btn-open {
+  flex: 1;
+  background: rgba(139, 92, 246, 0.12);
+  border: 0.5px solid rgba(139, 92, 246, 0.25);
+  color: #c4b5fd;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+  cursor: pointer;
+}
+
+.rm-btn-open:hover {
+  background: rgba(139, 92, 246, 0.22);
+}
+
+.rm-btn-del {
+  background: rgba(239, 68, 68, 0.07);
+  border: 0.5px solid rgba(239, 68, 68, 0.2);
+  color: rgba(252, 165, 165, 0.7);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.rm-btn-del:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+}
+
+/* Auth gate */
+.auth-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards 0.15s;
+}
+
+.auth-gate-icon {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+.auth-gate h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.auth-gate p {
+  font-size: 14px;
+  color: var(--text-3);
+  margin-bottom: 28px;
+  line-height: 1.7;
+  max-width: 380px;
+}
+.auth-gate-btns {
+  display: flex;
+  gap: 12px;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .page-wrap {
+    padding: 84px 16px 48px;
+  }
+}

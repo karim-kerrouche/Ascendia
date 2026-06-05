@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ascendia — Mes Roadmaps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/global.css" />
+    <link rel="stylesheet" href="style/mes-roadmaps.css" />
+  </head>
+  <body>
+    <!-- ══ NAVBAR ══ -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/ascendiaLogo.png" class="logo-mark" alt="Ascendia" />
+          <span class="logo-text">Ascendia</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link" data-page="index">Explorer</a>
+          <a
+            href="mes-roadmaps.html"
+            class="nav-link active"
+            data-page="mes-roadmaps"
+            >Mes roadmaps</a
+          >
+        </div>
+        <div class="nav-right" id="nav-right"></div>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>
+          Mes
+          <span
+            style="
+              font-style: italic;
+              background: linear-gradient(135deg, #c4b5fd, #ec4899);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+            >Roadmaps</span
+          >
+        </h1>
+        <p>Retrouve et reprends toutes tes roadmaps sauvegardées.</p>
+      </div>
+
+      <div id="content-area"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-copy">© 2026 Ascendia · Projet universitaire UMMTO</p>
+      </div>
+    </footer>
+
+    <script src="javaScript/mes-roadmaps.js"></script>
+  </body>
+</html>
